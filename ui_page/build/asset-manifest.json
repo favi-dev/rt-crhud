@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "./static/css/main.6923235b.css",
+    "main.js": "./static/js/main.2e10c10e.js",
+    "static/media/tajawal-400.woff2": "./static/media/tajawal-400.0a33b879c8eac3630d19.woff2",
+    "index.html": "./index.html"
+  },
+  "entrypoints": [
+    "static/css/main.6923235b.css",
+    "static/js/main.2e10c10e.js"
+  ]
+}
