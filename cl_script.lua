@@ -1,9 +1,9 @@
 
 
 
-local qbcore <const> = exports['qb-core']:GetCoreObject() --[[@as any]]
-local current = {} --[[@as table]]
-local cruiserNotification, distance = nil, nil --[[@as number]]
+local qbcore <const> = exports['qb-core']:GetCoreObject() 
+local current = {} 
+local cruiserNotification, distance = nil, nil 
 
 local cruiseEnabled, isMicOn, isFishArea = false, false, false --[[@as boolean]]
 
@@ -71,19 +71,15 @@ RegisterNetEvent('RespectSpeedHud:enteredVehicle', function(_distance, unit)
             local engineHealth = math.max(0, math.floor(GetVehicleEngineHealth(pVehicle) / 10))
             local trailer = GetVehicleTrailerVehicle(pVehicle)
             local trailerSize = 99
-            -- local items = exports.lvc.items()
+            
 
-            -- if heading > 180 then
+            
             if GetVehicleTypeFromEntity(pVehicle) == 'boat' then
                 heading = heading + 180
             else
                 heading = heading - 180
             end
-            -- end
 
-            -- print(GetVehicleTypeFromEntity(pVehicle), 'GetVehicleTypeFromEntity(pVehicle)')
-
-            -- print(isFishArea, 'isFishArea')
 
             SendNUIMessage({
                 type = "openUI",
@@ -97,7 +93,7 @@ RegisterNetEvent('RespectSpeedHud:enteredVehicle', function(_distance, unit)
                         isFishArea = isFishArea
                     },
                     isPolice = GetVehicleClass(pVehicle) == 18,
-                    -- police = { isOne = isMicOn, isTwo = items.lock, isThree = items.tkd, isFour = items.switch, isFive = items.siren },
+                    
                     rotate = heading,
                     progressRpm = math.floor(GetEntitySpeed(pVehicle) * 3.6),
                     progressValue = math.floor(GetVehicleCurrentRpm(pVehicle) * 100),
@@ -133,13 +129,11 @@ RegisterNetEvent('RespectSpeedHud:leftVehicle', function()
 end)
 
 RegisterNetEvent('RespectSpeedHud:client:isFishArea', function(boolean)
-    -- print('isFishArea boolean', isFishArea, boolean)
+    
     isFishArea = boolean
 end)
 
---
--- isFishArea
---
+
 
 RegisterCommand("+activatecruiser", function()
     local ped = PlayerPedId()
@@ -238,63 +232,7 @@ Citizen.CreateThread(function()
     end
 end)
 
--- RegisterCommand("+carMegaphone", function()
---     TriggerServerEvent("tgiann-voice:SetTalkingOnCarMicrophone", true)
---     exports["pma-voice"]:overrideProximityRange(200.0, true)
--- end, false)
 
--- RegisterCommand("-carMegaphone", function()
---     TriggerServerEvent("tgiann-voice:SetTalkingOnCarMicrophone", false)
---     exports["pma-voice"]:clearProximityOverride()
--- end, false)
-
---
-
--- local Submix = {}
--- local Effects = {
---     ["megaphone"] = {
---         [`default`] = 1,
---         [`freq_low`] = 1250.0,
---         [`freq_hi`] = 8500.0,
---     },
---     ["microphone"] = {
---         [`default`] = 1,
---         [`fudge`] = 0.5,
---     },
---     ["carMicrophone"] = {
---         [`default`] = 1,
---         [`freq_low`] = 1250.0,
---         [`freq_hi`] = 8500.0,
---         [`fudge`] = 0.5,
---         [`rm_mix`] = 19.0,
---     },
--- }
--- local effectFilter = {}
-
--- -- CreateThread(function()
--- --     for effect, mix in pairs(Effects) do
--- --         effectFilter[effect] = CreateAudioSubmix(effect)
--- --         SetAudioSubmixEffectRadioFx(effectFilter[effect], 0)
--- --         for hash, value in pairs(mix) do
--- --             SetAudioSubmixEffectParamInt(effectFilter[effect], 0, hash, data)
--- --         end
--- --         AddAudioSubmixOutput(effectFilter[effect], 0)
--- --     end
-
--- --     if Submix and #Submix > 0 then
--- --         for source, effect in pairs(Submix) do
--- --             MumbleSetSubmixForServerId(source, effectFilter[effect])
--- --         end
--- --     end
--- -- end)
-
--- RegisterNetEvent('RespectSpeedHud:client:updateSubmix', function(state, source, effect)
---     if state then
---         MumbleSetSubmixForServerId(source, effectFilter[effect])
---     else
---         MumbleSetSubmixForServerId(source, -1)
---     end
--- end)
 
 RegisterNetEvent("rt-crhud:client:anchor")
 AddEventHandler("rt-crhud:client:anchor", function()
@@ -323,14 +261,7 @@ AddEventHandler("rt-crhud:client:anchor", function()
     end
 end)
 
--- RegisterCommand('nameAnchor',function(source,args)
---     qbcore.Functions.Progressbar("anchor", "المرساة", 5000, false, true, {
---         disableMovement = true,
---         disableCarMovement = true,
---         disableMouse = false,
---         disableCombat = true
---     }, {}, {}, {}, function() end)
--- end)
+
 
 AddEventHandler('onResourceStart', function(resource)
   
@@ -338,7 +269,7 @@ AddEventHandler('onResourceStart', function(resource)
         Citizen.CreateThread(function ()
             while true do
                 Citizen.Wait(100)
-                -- TriggerEvent("RespectVehicleMileage:client:updateMelieage",1,GetVehiclePedIsIn(PlayerPedId()))
+                
                 
                 
                 TriggerEvent("RespectSpeedHud:enteredVehicle")
